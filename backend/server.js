@@ -34,10 +34,10 @@ app.get("/search", async (req, res) => {
 });
 
 // Get departure information from stop
-app.get("/departures", async (req, res) => {
+app.get("/departures/:stopid", async (req, res) => {
   try {
     const response = await fetch(
-      `https://api.transport.nsw.gov.au/v1/tp/stop_finder?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&type_dm=stop&name_dm=${Number(req.query)}`, {
+      `https://api.transport.nsw.gov.au/v1/tp/stop_finder?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&type_dm=stop&name_dm=${Number(req.params.stopid)}`, {
         headers: {
           Authorization: `apikey ${process.env.NSW_API_KEY}`,
           Accept: "application/json"
