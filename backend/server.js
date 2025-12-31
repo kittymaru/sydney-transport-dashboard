@@ -26,7 +26,7 @@ app.get("/search", async (req, res) => {
     });
 
     // filter for type stop before returning
-    const data = await response.text();
+    const data = await response.json();
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: "Error searching for stops" });

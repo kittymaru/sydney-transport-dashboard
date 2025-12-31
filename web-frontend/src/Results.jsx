@@ -12,7 +12,8 @@ function ResultsPage() {
     const getResults = async () => {
       const searchResults = await fetch(`http://localhost:3001/search?name=${searchValue}`);
       const data = await searchResults.json();
-      console.log(data)
+      console.log(data.locations.filter(result => result.type === "stop" && (result.modes.includes(1) || result.modes.includes(2))));
+      setResults(data.locations.filter(result => result.type === "stop" && (result.modes.includes(1) || result.modes.includes(2))));
     }
 
     getResults();
