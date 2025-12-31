@@ -37,7 +37,7 @@ app.get("/search", async (req, res) => {
 app.get("/departures/:stopid", async (req, res) => {
   try {
     const response = await fetch(
-      `https://api.transport.nsw.gov.au/v1/tp/departure_mon?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&mode=direct&type_dm=stop&name_dm=${req.params.stopid}departureMonitorMacro=true&TfNSWDM=true`, {
+      `https://api.transport.nsw.gov.au/v1/tp/departure_mon?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&mode=direct&type_dm=stop&name_dm=${Number(req.params.stopid)}&departureMonitorMacro=true&TfNSWDM=true`, {
         headers: {
           Authorization: `apikey ${process.env.NSW_API_KEY}`,
           Accept: "application/json"
