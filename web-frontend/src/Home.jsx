@@ -13,7 +13,7 @@ function HomePage() {
       return;
     }
 
-    navigate(`/results?search=${encodeURIComponent(search)}`)
+    navigate(`/results?search=${encodeURIComponent(search)}`);
   }
 
   return (

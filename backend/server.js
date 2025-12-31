@@ -18,7 +18,7 @@ app.get("/api/health", (req, res) => {
 app.get("/search", async (req, res) => {
   try {
     const response = await fetch(
-      `https://api.transport.nsw.gov.au/v1/tp/stop_finder?outputFormat=rapidJSON&type_sf=stop&name_sf=${req.query}&coordOutputFormat=EPSG:4326`, {
+      `https://api.transport.nsw.gov.au/v1/tp/stop_finder?outputFormat=rapidJSON&type_sf=any&name_sf=${req.query.name}&coordOutputFormat=EPSG:4326`, {
       headers: {
         Authorization: `apikey ${process.env.NSW_API_KEY}`,
         Accept: "application/json"
