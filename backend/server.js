@@ -14,7 +14,7 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "Backend is running" })
 });
 
-// Search for stops
+// Search for stops (any)
 app.get("/search", async (req, res) => {
   try {
     const response = await fetch(
@@ -37,7 +37,7 @@ app.get("/search", async (req, res) => {
 app.get("/departures/:stopid", async (req, res) => {
   try {
     const response = await fetch(
-      `https://api.transport.nsw.gov.au/v1/tp/stop_finder?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&type_dm=stop&name_dm=${Number(req.params.stopid)}`, {
+      `https://api.transport.nsw.gov.au/v1/tp/departure_mon?outputFormat=rapidJSON&coordOutputFormat=EPSG:4326&mode=direct&type_dm=stop&name_dm=${req.params.stopid}departureMonitorMacro=true&TfNSWDM=true`, {
         headers: {
           Authorization: `apikey ${process.env.NSW_API_KEY}`,
           Accept: "application/json"
@@ -45,7 +45,7 @@ app.get("/departures/:stopid", async (req, res) => {
       }
     );
 
-    const data = await response.text();
+    const data = await response.json();
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: "Error fetching departure information" });

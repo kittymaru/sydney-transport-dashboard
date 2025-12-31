@@ -22,7 +22,6 @@ function ResultsPage() {
           result.properties.mainLocality !== "Victoria"
       );
       
-      console.log(filtered);
       setResults(filtered);
       setLoading(false);
     }
