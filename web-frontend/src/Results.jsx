@@ -5,6 +5,7 @@ function ResultsPage() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const searchValue = params.get("search");
+  const navigate = useNavigate();
 
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,7 @@ function ResultsPage() {
           <div
             key={stop.id}
             className="w-full border-2 border-orange-300 rounded p-4 shadow-sm hover:shadow-md transition bg-white mb-5"
+            onClick={() => navigate(`/departures/${stop.id}`)}
           >
             <h2 className="font-semibold text-lg">{stop.disassembledName}</h2>
 
