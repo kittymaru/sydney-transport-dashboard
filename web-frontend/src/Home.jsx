@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const [search, setSearch] = useState("");

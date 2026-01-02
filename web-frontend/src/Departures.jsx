@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function DeparturePage() {
   const [results, setResults] = useState([]);
@@ -12,9 +12,7 @@ function DeparturePage() {
     const getResults = async () => {
       const departureResults = await fetch(`http://localhost:3001/departures/${stopId}`);
       const data = await departureResults.json();
-      console.log(data);
 
-      // filter out cancelled services
       setLocation(data.locations);
       setResults(data.stopEvents.filter(departure => !departure.isCancelled));
       setLoading(false);
@@ -65,7 +63,7 @@ function DeparturePage() {
               </div>
             
               <div className="flex-1 bg-gray-100 rounded-md p-3">
-                <p className="font-semibold">{departure.transportation.destination.name}</p>
+                <p className="font-semibold text-xl">{departure.transportation.destination.name}</p>
                 <p className="text-md text-gray-600">{departure.location.properties.platformName}</p>
                 <p className="text-sm text-gray-600 font-bold">{getTimeLeft(departure)}</p>
               </div>

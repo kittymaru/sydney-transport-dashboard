@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Routes, Route, useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function ResultsPage() {
   const location = useLocation();
@@ -21,7 +21,7 @@ function ResultsPage() {
           (result.modes.includes(2) || result.modes.includes(1)) &&
           result.properties.mainLocality !== "Victoria"
       );
-      
+
       setResults(filtered);
       setLoading(false);
     }
