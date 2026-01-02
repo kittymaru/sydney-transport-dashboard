@@ -13,8 +13,10 @@ function DeparturePage() {
       const departureResults = await fetch(`http://localhost:3001/departures/${stopId}`);
       const data = await departureResults.json();
       console.log(data);
+
+      // filter out cancelled services
       setLocation(data.locations);
-      setResults(data.stopEvents);
+      setResults(data.stopEvents.filter(departure => !departure.isCancelled));
       setLoading(false);
     }
 
@@ -26,7 +28,15 @@ function DeparturePage() {
     const now = new Date();
     const estimatedTime = new Date(departureTime);
 
-    return Math.round((estimatedTime - now) / 60000);
+    const timeLeft = Math.round((estimatedTime - now) / 60000);
+
+    if (timeLeft < 0) {
+      return "Departed";
+    } else if (timeLeft == 0) {
+      return "Departing now";
+    } else {
+      return `Departing in ${timeLeft} minutes`;
+    }
   }
 
   return (
@@ -57,7 +67,7 @@ function DeparturePage() {
               <div className="flex-1 bg-gray-100 rounded-md p-3">
                 <p className="font-semibold">{departure.transportation.destination.name}</p>
                 <p className="text-md text-gray-600">{departure.location.properties.platformName}</p>
-                <p className="text-sm text-gray-600 font-bold">Departing in {getTimeLeft(departure)} minutes</p>
+                <p className="text-sm text-gray-600 font-bold">{getTimeLeft(departure)}</p>
               </div>
             </div>
           ))}
