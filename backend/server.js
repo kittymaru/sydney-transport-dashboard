@@ -25,7 +25,6 @@ app.get("/search", async (req, res) => {
       }
     });
 
-    // filter for type stop before returning
     const data = await response.json();
     res.json(data);
   } catch (error) {

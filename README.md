@@ -17,3 +17,5 @@ basic departure board for sydney train stations.
 5. Start frontend server with `npm run dev`.
 
 6. Open `http://localhost:5173` in browser.
+
+**currently implementing mobile frontend**
